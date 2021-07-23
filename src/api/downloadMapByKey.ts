@@ -1,14 +1,18 @@
 import { AxiosInstance } from 'axios';
+import { existsSync, unlinkSync } from 'fs';
 import * as path from 'path';
-import * as fs from 'fs';
+import { downloadFile } from '../utils/Utils';
 
 async function downloadMapByKey(key: string, directory: string, axiosInstance: AxiosInstance): Promise<void> {
+
+  const fileLocation = path.resolve(directory, `${key}.zip`);
+  
   try {
 
-    const response = await axiosInstance.get(`/download/key/${key}`, { responseType: 'blob' });
-    await response.data.pipe(fs.createWriteStream(path.resolve(directory, `${key}.zip`)));
+    await downloadFile(`/download/key/${key}`, fileLocation, axiosInstance);
 
   } catch (err) {
+    if (!existsSync(fileLocation)) unlinkSync(fileLocation);
     const response = err.response;
     if (response.status === 404) throw new Error(`Song with key ${key} not found.`);
     if (response.status === 429) throw new Error(`Rate limit exceeded. Please wait ${response.headers['x-ratelimit-reset-after']} seconds.`);
