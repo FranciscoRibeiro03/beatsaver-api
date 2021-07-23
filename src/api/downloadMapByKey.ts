@@ -10,7 +10,7 @@ async function downloadMapByKey(key: string, directory: string, axiosInstance: A
 
   } catch (err) {
     const response = err.response;
-    if (response.status === 404) throw new Error('Song not found.');
+    if (response.status === 404) throw new Error(`Song with key ${key} not found.`);
     if (response.status === 429) throw new Error(`Rate limit exceeded. Please wait ${response.headers['x-ratelimit-reset-after']} seconds.`);
     throw new Error(err);
   }
