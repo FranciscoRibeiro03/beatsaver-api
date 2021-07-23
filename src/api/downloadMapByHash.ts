@@ -3,13 +3,14 @@ import { existsSync, unlinkSync } from 'fs';
 import * as path from 'path';
 import { downloadFile } from '../utils/Utils';
 
-async function downloadMapByHash(hash: string, directory: string, axiosInstance: AxiosInstance): Promise<void> {
+async function downloadMapByHash(hash: string, directory: string, axiosInstance: AxiosInstance): Promise<string> {
 
   const fileLocation = path.resolve(directory, `${hash}.zip`);
 
   try {
 
     await downloadFile(`/download/hash/${hash}`, fileLocation, axiosInstance);
+    return fileLocation;
 
   } catch (err) {
     if (!existsSync(fileLocation)) unlinkSync(fileLocation);
