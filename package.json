@@ -34,7 +34,8 @@
   "homepage": "https://github.com/rui2015/beatsaver-api#readme",
   "dependencies": {
     "axios": "^0.21.1",
-    "semver": "^7.3.5"
+    "semver": "^7.3.5",
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
@@ -43,7 +44,6 @@
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.4",
-    "tslib": "^2.3.0",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.3.5"
