@@ -7,7 +7,7 @@ async function searchMap(
   page: number = 0,
 ): Promise<BeatSaverSearchResult | null> {
   try {
-    const response = await axiosInstance.get(`/search/text/${page}&q=${encodeURIComponent(searchString)}`);
+    const response = await axiosInstance.get(`/search/text/${page}?q=${encodeURIComponent(searchString)}`);
 
     if (response.status === 429)
       throw new Error(`Rate limit exceeded. Please wait ${response.headers['x-ratelimit-reset-after']} seconds.`);
