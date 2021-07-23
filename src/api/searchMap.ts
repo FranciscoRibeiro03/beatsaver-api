@@ -14,7 +14,6 @@ async function searchMap(
   } catch (err) {
     const response = err.response;
     if (response.status === 429) throw new Error(`Rate limit exceeded. Please wait ${err.response.headers['x-ratelimit-reset-after']} seconds.`);
-    if (response.status !== 200) throw new Error('Unknown error. Please contact rui2015.');
     throw err;
   }
 }
