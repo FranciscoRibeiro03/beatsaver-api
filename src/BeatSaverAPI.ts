@@ -82,4 +82,4 @@ class BeatSaverAPI {
   }
 }
 
-export = BeatSaverAPI
+export = BeatSaverAPI;
