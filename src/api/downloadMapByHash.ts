@@ -1,9 +1,10 @@
 import { AxiosInstance } from 'axios';
-import { existsSync, unlinkSync } from 'fs';
 import * as path from 'path';
 import { downloadFile } from '../utils/Utils';
 
 async function downloadMapByHash(hash: string, directory: string, axiosInstance: AxiosInstance): Promise<string> {
+  const { existsSync, unlinkSync } = await import('fs');
+
   const fileLocation = path.resolve(directory, `${hash}.zip`);
 
   try {
