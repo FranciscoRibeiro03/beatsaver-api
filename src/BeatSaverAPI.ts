@@ -1,5 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { valid } from 'semver';
+import downloadMapByHash from './api/downloadMapByHash';
+import downloadMapByKey from './api/downloadMapByKey';
 import getMapDetailsByHash from './api/getMapDetailsByHash';
 import getMapDetailsByKey from './api/getMapDetailsByKey';
 import getMapsByUploader from './api/getMapsByUploader';
@@ -29,9 +31,9 @@ class BeatSaverAPI {
 
     this.axiosInstance = axios.create({
       baseURL: 'https://beatsaver.com/api',
-      headers: {
+      headers: navigator !== undefined ? {} : {
         'User-Agent': `${this.appName}/${this.appVersion}`,
-      },
+      }
     });
   }
 
@@ -72,12 +74,12 @@ class BeatSaverAPI {
   }
 
   public async downloadMapByHash(hash: string, directory: string) {
-    const { default: downloadMapByHash } = await import('./api/downloadMapByHash');
+    if(navigator === undefined) return "This function can't be used in a browser"
     return downloadMapByHash(hash, directory, this.axiosInstance);
   }
 
   public async downloadMapByKey(key: string, directory: string) {
-    const { default: downloadMapByKey } = await import('./api/downloadMapByKey');
+    if(navigator === undefined) return "This function can't be used in a browser"
     return downloadMapByKey(key, directory, this.axiosInstance);
   }
 }
