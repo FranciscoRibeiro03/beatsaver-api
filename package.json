@@ -34,10 +34,12 @@
   "homepage": "https://github.com/rui2015/beatsaver-api#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "detect-node": "^2.1.0",
     "semver": "^7.3.5",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@types/detect-node": "^2.0.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.4.1",
     "@types/semver": "^7.3.7",
