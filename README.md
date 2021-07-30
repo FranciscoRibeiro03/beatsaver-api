@@ -18,14 +18,14 @@ const api = new BeatSaverAPI({
 
 api.getMapDetailsByKey('key').then(map => {}).catch(err => {});
 api.getMapDetailsByHash('hash').then(map => {}).catch(err => {});
-api.getMapsByUploader('userID', page?).then(maps => {}).catch(err => {});
-api.getMapsSortedByHot(page?).then(maps => {}).catch(err => {});
-api.getMapsSortedByRating(page?).then(maps => {}).catch(err => {});
-api.getMapsSortedByLatest(page?).then(maps => {}).catch(err => {});
-api.getMapsSortedByDownloads(page?).then(maps => {}).catch(err => {});
-api.getMapsSortedByPlays(page?).then(maps => {}).catch(err => {});
+api.getMapsByUploader('userID', page?).then(searchResult => {}).catch(err => {});
+api.getMapsSortedByHot(page?).then(searchResult => {}).catch(err => {});
+api.getMapsSortedByRating(page?).then(searchResult => {}).catch(err => {});
+api.getMapsSortedByLatest(page?).then(searchResult => {}).catch(err => {});
+api.getMapsSortedByDownloads(page?).then(searchResult => {}).catch(err => {});
+api.getMapsSortedByPlays(page?).then(searchResult => {}).catch(err => {});
 
-api.searchMap('string').then(maps => {}).catch(err => {});
+api.searchMap('string').then(searchResult => {}).catch(err => {});
 
 api.downloadMapByKey('key', directory).then(fileLocation => {}).catch(err => {});
 api.downloadMapByHash('hash', directory).then(fileLocation => {}).catch(err => {});
