@@ -57,5 +57,5 @@ test('Test Map Equality', async () => {
   const map1ByHash = await bsapi.getMapByHash(knownHash1);
   const map2ByKey = await bsapi.getMapByID(knownKey2);
   expect(map1ByKey).toStrictEqual(map1ByHash);
-  expect(map2ByKey).not.toEqual(map1ByKey)
+  expect(map2ByKey).not.toEqual(map1ByKey);
 });

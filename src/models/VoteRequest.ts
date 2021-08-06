@@ -1,7 +1,7 @@
-import { AuthRequest } from "./AuthRequest";
+import { AuthRequest } from './AuthRequest';
 
 export interface VoteRequest {
-    auth: AuthRequest,
-    direction: boolean,
-    hash: string
+  auth: AuthRequest;
+  direction: boolean;
+  hash: string;
 }
