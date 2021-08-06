@@ -30,7 +30,7 @@ class BeatSaverAPI {
     this.appVersion = appVersionSemVer;
 
     this.axiosInstance = axios.create({
-      baseURL: 'https://beatsaver.com/api',
+      baseURL: 'https://api.beatsaver.com',
       headers: !isNode
         ? {}
         : {
