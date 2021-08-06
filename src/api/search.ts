@@ -33,7 +33,7 @@ export interface SearchOptions {
 
 export async function searchMaps(axiosInstance: AxiosInstance, searchOptions: SearchOptions = {sortOrder: SortOrder.Latest}, page: number = 0): Promise<SearchResponse> {
     try {
-        const response = await axiosInstance.get(`/search/${page}`, {params: searchOptions})
+        const response = await axiosInstance.get(`/search/text/${page}`, {params: searchOptions})
         return response.data as SearchResponse;
     } catch (err) {
         const response = err.response;
