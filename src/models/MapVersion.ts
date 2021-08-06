@@ -1,4 +1,6 @@
 import { Instant } from "./Instant";
+import { MapDifficulty } from "./MapDifficulty";
+import { MapTestplay } from "./MapTestplay";
 
 export interface MapVersion {
     coverURL: string,

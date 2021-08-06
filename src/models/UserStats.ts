@@ -1,4 +1,5 @@
 import { Instant } from "./Instant";
+import { UserDiffStats } from "./UserDiffStats";
 
 export interface UserStats {
     avgBpm: number,

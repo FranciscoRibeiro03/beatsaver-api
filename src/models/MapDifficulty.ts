@@ -1,3 +1,5 @@
+import { MapParitySummary } from "./MapParitySummary";
+
 export interface MapDifficulty {
     bombs: number,
     characteristic: string,
