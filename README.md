@@ -16,55 +16,19 @@ const api = new BeatSaverAPI({
     Version = '1.0.0'
 });
 
-api.getMapDetailsByKey('key').then(map => {}).catch(err => {});
-api.getMapDetailsByHash('hash').then(map => {}).catch(err => {});
-api.getMapsByUploader('userID', page?).then(searchResult => {}).catch(err => {});
-api.getMapsSortedByHot(page?).then(searchResult => {}).catch(err => {});
-api.getMapsSortedByRating(page?).then(searchResult => {}).catch(err => {});
-api.getMapsSortedByLatest(page?).then(searchResult => {}).catch(err => {});
-api.getMapsSortedByDownloads(page?).then(searchResult => {}).catch(err => {});
-api.getMapsSortedByPlays(page?).then(searchResult => {}).catch(err => {});
+api.getMapByID('ID').then(map => {}).catch(err => {});
+api.getMapByHash('hash').then(map => {}).catch(err => {});
+api.getMapsByUploader(userID, page?).then(searchResult => {}).catch(err => {});
+api.getLatestMaps(automapper, before?).then(searchResult => {}).catch(err => {});
 
-api.searchMap('string').then(searchResult => {}).catch(err => {});
-
-api.downloadMapByKey('key', directory).then(fileLocation => {}).catch(err => {});
-api.downloadMapByHash('hash', directory).then(fileLocation => {}).catch(err => {});
+api.searchMaps(searchOptions, page?).then(searchResult => {}).catch(err => {});
 ```
 
 You need to make sure that the App Version on the `BeatSaverAPI` constructor is valid [SemVer](https://semver.org/)
 
 ## Important Notes
 
-- You can't use the `downloadMapByKey` and the `downloadMapByHash` functions if you're using this library on a browser.
-
 - While using this library with Node.js, all requests made to BeatSaver are made with the User-Agent `AppName/Version` (so, in the example case, the User-Agent sent to BeatSaver will be `Application Name/1.0.0`). However, if you're using this library on a browser, the requests will use your browser's User-Agent.
-
-## Important for users using webpack
-
-If you try to use [webpack](https://webpack.js.org/) for front-end use with this library, it will throw two errors, due to the fact that the `fs` module is not available.
-To stop these errors, you need to add one of the following to your `webpack.config.js` file:
-
-```js
-// Classic
-module.exports = {
-  ...
-  node: {
-    fs: "empty"
-  }
-}
-```
-
-```js
-// Symfony
-// You edit the end of the file with the following
-let config = Encore.getWebpackConfig();
-config.node = {
-    fs: "empty"
-}
-module.exports = config
-```
-
-Thank you [KriKrixs](https://github.com/KriKrixs) for this
 
 ## Help
 
