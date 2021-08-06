@@ -2,15 +2,8 @@ import axios, { AxiosInstance } from 'axios';
 import { valid } from 'semver';
 import isNode from 'detect-node';
 
-import getMapDetailsByHash from './api/getMapDetailsByHash';
-import getMapDetailsByKey from './api/getMapDetailsByKey';
-import getMapsByUploader from './api/getMapsByUploader';
-import getMapsSortedByDownloads from './api/getMapsSortedByDownloads';
-import getMapsSortedByHot from './api/getMapsSortedByHot';
-import getMapsSortedByLatest from './api/getMapsSortedByLatest';
-import getMapsSortedByPlays from './api/getMapsSortedByPlays';
-import getMapsSortedByRating from './api/getMapsSortedByRating';
-import searchMap from './api/searchMap';
+import { getMapByID, getMapByHash, getMapsByUploader, getLatestMaps } from './api/maps';
+import { searchMaps, SearchOptions } from './api/search';
 
 interface BeatSaverAPIOptions {
   AppName: string;
@@ -39,52 +32,24 @@ class BeatSaverAPI {
     });
   }
 
-  public async getMapDetailsByKey(key: string) {
-    return getMapDetailsByKey(key, this.axiosInstance);
+  public async getMapByID(id: string) {
+    return getMapByID(this.axiosInstance, id);
   }
 
-  public async getMapDetailsByHash(hash: string) {
-    return getMapDetailsByHash(hash, this.axiosInstance);
+  public async getMapByHash(hash: string) {
+    return getMapByHash(this.axiosInstance, hash);
   }
 
-  public async getMapsByUploader(userID: string, page: number = 0) {
-    return getMapsByUploader(userID, this.axiosInstance, page);
+  public async getMapsByUploader(userID: number, page: number = 0) {
+    return getMapsByUploader(this.axiosInstance, userID, page);
   }
 
-  public async getMapsSortedByDownloads(page: number = 0) {
-    return getMapsSortedByDownloads(this.axiosInstance, page);
+  public async getLatestMaps(automapper: boolean, before?: string) {
+    return getLatestMaps(this.axiosInstance, automapper, before);
   }
 
-  public async getMapsSortedByHot(page: number = 0) {
-    return getMapsSortedByHot(this.axiosInstance, page);
-  }
-
-  public async getMapsSortedByLatest(page: number = 0) {
-    return getMapsSortedByLatest(this.axiosInstance, page);
-  }
-
-  public async getMapsSortedByPlays(page: number = 0) {
-    return getMapsSortedByPlays(this.axiosInstance, page);
-  }
-
-  public async getMapsSortedByRating(page: number = 0) {
-    return getMapsSortedByRating(this.axiosInstance, page);
-  }
-
-  public async searchMap(searchString: string, page: number = 0) {
-    return searchMap(searchString, this.axiosInstance, page);
-  }
-
-  public async downloadMapByHash(hash: string, directory: string) {
-    if (!isNode) return "downloadMapByHash function can't be used in a browser";
-    const { default: downloadMapByHash } = await import('./api/downloadMapByHash');
-    return downloadMapByHash(hash, directory, this.axiosInstance);
-  }
-
-  public async downloadMapByKey(key: string, directory: string) {
-    if (!isNode) return "downloadMapByKey function can't be used in a browser";
-    const { default: downloadMapByKey } = await import('./api/downloadMapByKey');
-    return downloadMapByKey(key, directory, this.axiosInstance);
+  public async searchMaps(searchOptions: SearchOptions, page: number = 0) {
+    return searchMaps(this.axiosInstance, searchOptions, page);
   }
 }
 
