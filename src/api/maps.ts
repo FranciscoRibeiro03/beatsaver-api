@@ -39,9 +39,11 @@ export async function getMapsByUploader(axiosInstance: AxiosInstance, id: number
     }
 }
 
-export async function getLatestMaps(axiosInstance: AxiosInstance, automapper: boolean, before: string): Promise<SearchResponse> {
+export async function getLatestMaps(axiosInstance: AxiosInstance, automapper: boolean, before?: string): Promise<SearchResponse> {
     try {
-        const response = await axiosInstance.get(`/maps/latest?automapper=${String(automapper)}&before=${before}`);
+        let endpoint = `/maps/latest?automapper${automapper}`;
+        if (before) endpoint += `&before=${encodeURIComponent(before)}`;
+        const response = await axiosInstance.get(endpoint);
         return response.data as SearchResponse;
     } catch (err) {
         const response = err.response;
