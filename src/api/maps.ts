@@ -4,7 +4,7 @@ import SongNotFoundError from '../errors/SongNotFoundError';
 import { MapDetail } from '../models/MapDetail';
 import { SearchResponse } from '../models/SearchResponse';
 
-var beforeRegex = /[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:[\d]{2}:[\d]{2}\+[\d]{2}:[\d]{2}/g;
+const beforeRegex = /[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:[\d]{2}:[\d]{2}\+[\d]{2}:[\d]{2}/g;
 
 export async function getMapByID(axiosInstance: AxiosInstance, id: string): Promise<MapDetail> {
   try {
