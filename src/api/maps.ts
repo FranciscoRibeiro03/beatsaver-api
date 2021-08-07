@@ -60,7 +60,7 @@ export async function getLatestMaps(
     const response = await axiosInstance.get(endpoint);
     return response.data as SearchResponse;
   } catch (err) {
-    if (!err.response) throw err
+    if (!err.response) throw err;
     const response = err.response;
     if (response.status === 429) throw new RateLimitError();
     throw err;
