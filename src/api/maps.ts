@@ -4,6 +4,8 @@ import SongNotFoundError from '../errors/SongNotFoundError';
 import { MapDetail } from '../models/MapDetail';
 import { SearchResponse } from '../models/SearchResponse';
 
+var beforeRegex = /[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:[\d]{2}:[\d]{2}\+[\d]{2}:[\d]{2}/g;
+
 export async function getMapByID(axiosInstance: AxiosInstance, id: string): Promise<MapDetail> {
   try {
     const response = await axiosInstance.get(`/maps/id/${id}`);
@@ -50,7 +52,11 @@ export async function getLatestMaps(
 ): Promise<SearchResponse> {
   try {
     let endpoint = `/maps/latest?automapper${automapper}`;
-    if (before) endpoint += `&before=${encodeURIComponent(before)}`;
+    if (before) {
+      if (!beforeRegex.test(before))
+        throw new Error('The before parameter needs to be of the form "YYYY-MM-DDTHH:MM:SS+00:00"');
+      endpoint += `&before=${encodeURIComponent(before)}`;
+    }
     const response = await axiosInstance.get(endpoint);
     return response.data as SearchResponse;
   } catch (err) {
