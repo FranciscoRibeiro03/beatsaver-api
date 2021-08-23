@@ -5,7 +5,7 @@ import BeatSaverAPI from '../BeatSaverAPI';
 const knownKey1 = 'abcd';
 const knownHash1 = '2f3e8fcd9df83062343ee2a8ba4ba78bb4d83ed0';
 const knownUploaderID1 = 4285821;
-const knownUploaderUsername1 = 'EpicTroller';
+const knownUploaderUsername1 = 'epictroller';
 
 // Song Info for Key 2144 (map: Shut Up and Dance)
 const knownKey2 = '2144';
