@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import RateLimitError from '../errors/RateLimitError';
 import { Instant } from '../models/Instant';
 import { SearchResponse } from '../models/SearchResponse';
@@ -40,8 +40,11 @@ export async function searchMaps(
     const response = await axiosInstance.get(`/search/text/${page}`, { params: searchOptions });
     return response.data as SearchResponse;
   } catch (err) {
-    const response = err.response;
-    if (response.status === 429) throw new RateLimitError();
+    if (axios.isAxiosError(err)) {
+      if (!err.response) throw err;
+      const response = err.response;
+      if (response.status === 429) throw new RateLimitError();
+    }
     throw err;
   }
 }
