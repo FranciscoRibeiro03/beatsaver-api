@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import RateLimitError from '../errors/RateLimitError';
 import SongNotFoundError from '../errors/SongNotFoundError';
 import { MapDetail } from '../models/MapDetail';
@@ -11,9 +11,12 @@ export async function getMapByID(axiosInstance: AxiosInstance, id: string): Prom
     const response = await axiosInstance.get(`/maps/id/${id}`);
     return response.data as MapDetail;
   } catch (err) {
-    const response = err.response;
-    if (response.status === 404) throw new SongNotFoundError('ID', id);
-    if (response.status === 429) throw new RateLimitError();
+    if (axios.isAxiosError(err)) {
+      if (!err.response) throw err;
+      const response = err.response;
+      if (response.status === 404) throw new SongNotFoundError('ID', id);
+      if (response.status === 429) throw new RateLimitError();
+    }
     throw err;
   }
 }
@@ -23,9 +26,12 @@ export async function getMapByHash(axiosInstance: AxiosInstance, hash: string): 
     const response = await axiosInstance.get(`/maps/hash/${hash}`);
     return response.data as MapDetail;
   } catch (err) {
-    const response = err.response;
-    if (response.status === 404) throw new SongNotFoundError('hash', hash);
-    if (response.status === 429) throw new RateLimitError();
+    if (axios.isAxiosError(err)) {
+      if (!err.response) throw err;
+      const response = err.response;
+      if (response.status === 404) throw new SongNotFoundError('hash', hash);
+      if (response.status === 429) throw new RateLimitError();
+    }
     throw err;
   }
 }
@@ -39,8 +45,11 @@ export async function getMapsByUploader(
     const response = await axiosInstance.get(`/maps/uploader/${id}/${page}`);
     return response.data as SearchResponse;
   } catch (err) {
-    const response = err.response;
-    if (response.status === 429) throw new RateLimitError();
+    if (axios.isAxiosError(err)) {
+      if (!err.response) throw err;
+      const response = err.response;
+      if (response.status === 429) throw new RateLimitError();
+    }
     throw err;
   }
 }
@@ -60,9 +69,11 @@ export async function getLatestMaps(
     const response = await axiosInstance.get(endpoint);
     return response.data as SearchResponse;
   } catch (err) {
-    if (!err.response) throw err;
-    const response = err.response;
-    if (response.status === 429) throw new RateLimitError();
+    if (axios.isAxiosError(err)) {
+      if (!err.response) throw err;
+      const response = err.response;
+      if (response.status === 429) throw new RateLimitError();
+    }
     throw err;
   }
 }
