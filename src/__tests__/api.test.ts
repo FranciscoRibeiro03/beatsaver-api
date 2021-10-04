@@ -1,4 +1,3 @@
-import { existsSync, readFileSync, unlinkSync } from 'fs';
 import BeatSaverAPI from '../BeatSaverAPI';
 
 // Song Info for Key abcd (map: Keep it up)
