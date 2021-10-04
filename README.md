@@ -12,8 +12,8 @@ npm install beatsaver-api
 const BeatSaverAPI = require('beatsaver-api');
 
 const api = new BeatSaverAPI({
-    AppName = 'Application Name',
-    Version = '1.0.0'
+    AppName: 'Application Name',
+    Version: '1.0.0'
 });
 
 api.getMapByID('ID').then(map => {}).catch(err => {});
