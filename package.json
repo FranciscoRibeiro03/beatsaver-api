@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/rui2015/beatsaver-api#readme",
   "dependencies": {
-    "axios": "^0.22.0",
+    "axios": "^0.23.0",
     "detect-node": "^2.1.0",
     "semver": "^7.3.5",
     "tslib": "^2.3.1"
