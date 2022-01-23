@@ -12,6 +12,7 @@ export interface MapVersion {
   key: string;
   previewURL: string;
   sageScore: number;
+  scheduledAt: Instant;
   state: string;
   testplayAt: Instant;
   testplays: MapTestplay[];

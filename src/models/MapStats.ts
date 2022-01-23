@@ -3,5 +3,6 @@ export interface MapStats {
   downvotes: number;
   plays: number;
   score: number;
+  scoreOneDP: number;
   upvotes: number;
 }
