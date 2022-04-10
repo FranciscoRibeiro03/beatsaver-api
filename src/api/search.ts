@@ -37,8 +37,8 @@ export async function searchMaps(
 ): Promise<SearchResponse> {
   try {
     if (searchOptions.q) searchOptions.q = encodeURIComponent(searchOptions.q);
-    const response = await axiosInstance.get(`/search/text/${page}`, { params: searchOptions });
-    return response.data as SearchResponse;
+    const response = await axiosInstance.get<SearchResponse>(`/search/text/${page}`, { params: searchOptions });
+    return response.data;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       if (!err.response) throw err;
