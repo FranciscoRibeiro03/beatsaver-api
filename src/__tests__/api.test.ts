@@ -1,4 +1,5 @@
 import BeatSaverAPI from '../BeatSaverAPI';
+import { SearchOptions, SortOrder } from '../api/search';
 
 // Song Info for Key abcd (map: Keep it up)
 const knownKey1 = 'abcd';
@@ -11,6 +12,12 @@ const knownKey2 = '2144';
 const knownHash2 = '89cf8bb07afb3c59ae7b5ac00337d62261c36fb4';
 const knownUploaderID2 = 30311;
 const knownUploaderUsername2 = 'bennydabeast';
+
+// Song Search for "Bad Romance Lady Gaga"
+const knownSearchOptions: SearchOptions = {
+  q: 'Bad Romance Lady Gaga',
+  sortOrder: SortOrder.Relevance,
+};
 
 const bsapi = new BeatSaverAPI({
   AppName: 'BeatSaverAPI',
@@ -57,4 +64,9 @@ test('Test Map Equality', async () => {
   const map2ByKey = await bsapi.getMapByID(knownKey2);
   expect(map1ByKey).toStrictEqual(map1ByHash);
   expect(map2ByKey).not.toEqual(map1ByKey);
+});
+
+test('Test Map Search', async () => {
+  const test = await bsapi.searchMaps(knownSearchOptions);
+  expect(test.docs.length).toBeGreaterThan(0);
 });
