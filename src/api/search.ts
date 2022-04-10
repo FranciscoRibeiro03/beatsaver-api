@@ -36,7 +36,6 @@ export async function searchMaps(
   page: number = 0,
 ): Promise<SearchResponse> {
   try {
-    if (searchOptions.q) searchOptions.q = encodeURIComponent(searchOptions.q);
     const response = await axiosInstance.get<SearchResponse>(`/search/text/${page}`, { params: searchOptions });
     return response.data;
   } catch (err) {
