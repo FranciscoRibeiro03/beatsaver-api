@@ -8,8 +8,8 @@ const beforeRegex = /[\d]{4}-[\d]{2}-[\d]{2}T[\d]{2}:[\d]{2}:[\d]{2}\+[\d]{2}:[\
 
 export async function getMapByID(axiosInstance: AxiosInstance, id: string): Promise<MapDetail> {
   try {
-    const response = await axiosInstance.get(`/maps/id/${id}`);
-    return response.data as MapDetail;
+    const response = await axiosInstance.get<MapDetail>(`/maps/id/${id}`);
+    return response.data;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       if (!err.response) throw err;
@@ -23,8 +23,8 @@ export async function getMapByID(axiosInstance: AxiosInstance, id: string): Prom
 
 export async function getMapByHash(axiosInstance: AxiosInstance, hash: string): Promise<MapDetail> {
   try {
-    const response = await axiosInstance.get(`/maps/hash/${hash}`);
-    return response.data as MapDetail;
+    const response = await axiosInstance.get<MapDetail>(`/maps/hash/${hash}`);
+    return response.data;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       if (!err.response) throw err;
@@ -42,8 +42,8 @@ export async function getMapsByUploader(
   page: number = 0,
 ): Promise<SearchResponse> {
   try {
-    const response = await axiosInstance.get(`/maps/uploader/${id}/${page}`);
-    return response.data as SearchResponse;
+    const response = await axiosInstance.get<SearchResponse>(`/maps/uploader/${id}/${page}`);
+    return response.data;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       if (!err.response) throw err;
@@ -66,8 +66,8 @@ export async function getLatestMaps(
         throw new Error('The before parameter needs to be of the form "YYYY-MM-DDTHH:MM:SS+00:00"');
       endpoint += `&before=${encodeURIComponent(before)}`;
     }
-    const response = await axiosInstance.get(endpoint);
-    return response.data as SearchResponse;
+    const response = await axiosInstance.get<SearchResponse>(endpoint);
+    return response.data;
   } catch (err) {
     if (axios.isAxiosError(err)) {
       if (!err.response) throw err;
