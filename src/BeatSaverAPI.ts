@@ -3,6 +3,7 @@ import { valid } from 'semver';
 import isNode from 'detect-node';
 
 import { getMapByID, getMapByHash, getMapsByUploader, getLatestMaps } from './api/maps';
+import { getLatestPlaylists, getPlaylistByID, getPlaylistsByUser } from './api/playlists';
 import { searchMaps, SearchOptions } from './api/search';
 
 interface BeatSaverAPIOptions {
@@ -50,6 +51,18 @@ class BeatSaverAPI {
 
   public async searchMaps(searchOptions: SearchOptions, page: number = 0) {
     return searchMaps(this.axiosInstance, searchOptions, page);
+  }
+
+  public async getLatestPlaylists(after: string, before: string, sort: 'UPDATED' | 'SONGS_UPDATED' | 'CREATED') {
+    return getLatestPlaylists(this.axiosInstance, after, before, sort);
+  }
+
+  public async getPlaylistByID(id: number, page: number = 0) {
+    return getPlaylistByID(this.axiosInstance, id, page);
+  }
+
+  public async getPlaylistsByUser(userID: number, page: number = 0) {
+    return getPlaylistsByUser(this.axiosInstance, userID, page);
   }
 }
 

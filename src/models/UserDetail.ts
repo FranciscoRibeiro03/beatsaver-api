@@ -4,6 +4,7 @@ export interface UserDetail {
   avatar: string;
   curator: boolean;
   email: string;
+  following: boolean;
   hash: string;
   id: number;
   name: string;
@@ -12,4 +13,5 @@ export interface UserDetail {
   type: string;
   uniqueSet: boolean;
   uploadLimit: number;
+  verifiedMapper: boolean;
 }

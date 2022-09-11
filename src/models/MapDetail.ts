@@ -7,7 +7,8 @@ import { UserDetail } from './UserDetail';
 export interface MapDetail {
   automapper: boolean;
   createdAt: Instant;
-  curator: string;
+  curatedAt: Instant;
+  curator: UserDetail;
   deletedAt: Instant;
   description: string;
   id: string;
