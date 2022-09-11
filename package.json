@@ -1,6 +1,6 @@
 {
   "name": "beatsaver-api",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "description": "A BeatSaver API Wrapper",
   "main": "./lib/BeatSaverAPI.js",
   "types": "./lib/BeatSaverAPI.d.ts",
