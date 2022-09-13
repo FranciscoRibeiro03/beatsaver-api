@@ -1,6 +1,6 @@
-import { MapDetail } from "./MapDetail";
+import { MapDetail } from './MapDetail';
 
 export interface MapDetailWithOrder {
-    map: MapDetail;
-    order: number;
+  map: MapDetail;
+  order: number;
 }

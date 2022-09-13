@@ -1,5 +1,5 @@
-import { PlaylistFull } from "./PlaylistFull";
+import { PlaylistFull } from './PlaylistFull';
 
 export interface PlaylistSearchResponse {
-    docs: PlaylistFull[];
+  docs: PlaylistFull[];
 }
