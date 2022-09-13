@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rui2015/beatsaver-api.git"
+    "url": "git+https://github.com/FranciscoRibeiro03/beatsaver-api.git"
   },
   "author": "rui2015",
   "keywords": [
@@ -29,9 +29,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rui2015/beatsaver-api/issues"
+    "url": "https://github.com/FranciscoRibeiro03/beatsaver-api/issues"
   },
-  "homepage": "https://github.com/rui2015/beatsaver-api#readme",
+  "homepage": "https://github.com/FranciscoRibeiro03/beatsaver-api#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "detect-node": "^2.1.0",
