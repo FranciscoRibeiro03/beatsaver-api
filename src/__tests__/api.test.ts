@@ -70,3 +70,7 @@ test('Test Map Search', async () => {
   const test = await bsapi.searchMaps(knownSearchOptions);
   expect(test.docs.length).toBeGreaterThan(0);
 });
+
+test('Test Error on Invalid Map', async () => {
+  await expect(bsapi.getMapByID('invalid')).rejects.toThrow(BeatSaverAPI.Errors.SongNotFoundError);
+});

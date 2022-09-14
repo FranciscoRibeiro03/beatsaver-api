@@ -6,6 +6,10 @@ import { getMapByID, getMapByHash, getMapsByUploader, getLatestMaps } from './ap
 import { getLatestPlaylists, getPlaylistByID, getPlaylistsByUser } from './api/playlists';
 import { searchMaps, SearchOptions } from './api/search';
 
+import RateLimitError from './errors/RateLimitError';
+import SongNotFoundError from './errors/SongNotFoundError';
+import PlaylistNotFoundError from './errors/PlaylistNotFoundError';
+
 interface BeatSaverAPIOptions {
   AppName: string;
   Version: string;
@@ -31,6 +35,14 @@ class BeatSaverAPI {
             'User-Agent': `${this.appName}/${this.appVersion}`,
           },
     });
+  }
+
+  public static get Errors() {
+    return {
+      RateLimitError,
+      SongNotFoundError,
+      PlaylistNotFoundError,
+    };
   }
 
   public async getMapByID(id: string) {
