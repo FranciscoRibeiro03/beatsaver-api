@@ -14,6 +14,7 @@ export interface SearchOptions {
   automapper?: boolean;
   chroma?: boolean;
   cinema?: boolean;
+  curated?: boolean;
   from?: Instant;
   fullSpread?: boolean;
   maxBpm?: number;
@@ -24,10 +25,13 @@ export interface SearchOptions {
   minBpm?: number;
   minDuration?: number;
   minNps?: number;
+  minRating?: number;
   noodle?: boolean;
   q?: string;
   ranked?: boolean;
+  tags?: string[] | string;
   to?: Instant;
+  verified?: boolean;
 }
 
 export async function searchMaps(
@@ -36,6 +40,7 @@ export async function searchMaps(
   page: number = 0,
 ): Promise<SearchResponse> {
   try {
+    if (searchOptions.tags && Array.isArray(searchOptions.tags)) searchOptions.tags = searchOptions.tags.join(',');
     const response = await axiosInstance.get<SearchResponse>(`/search/text/${page}`, { params: searchOptions });
     return response.data;
   } catch (err) {
