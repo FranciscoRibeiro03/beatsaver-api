@@ -10,7 +10,7 @@ export enum SortOrder {
 }
 
 export interface SearchOptions {
-  sortOrder: SortOrder | "Latest" | "Relevance" | "Rating";
+  sortOrder: SortOrder | 'Latest' | 'Relevance' | 'Rating';
   automapper?: boolean;
   chroma?: boolean;
   cinema?: boolean;
