@@ -18,4 +18,5 @@ export interface MapDifficulty {
   paritySummary: MapParitySummary;
   seconds: number;
   stars: number;
+  label: string;
 }
